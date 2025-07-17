@@ -922,7 +922,7 @@ export default class Game extends EventEmitter {
                 endPhrase = `${winners.user} is the winner!`
             } else {
                 // No winner
-                endPhrase = ''
+                endPhrase = "It's a draw!"
             }
 
             // Add game end message
