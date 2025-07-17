@@ -324,12 +324,21 @@ export default class Othello extends Game {
     }
 
     analyzeBoard(side) {
-        if(this.game.isEnded) {
-            let winner = this.getPlayer(side)
-            this.end(winner)
-            this.over = true
-        }
+         if (this.game.isEnded) {
+        const counts = this.board.countByPieceType();
+        const blackCount = counts[PIECE_TYPES.BLACK];
+        const whiteCount = counts[PIECE_TYPES.WHITE];
+
+        let winnerSide = null;
+        if (blackCount > whiteCount) winnerSide = 'Black';
+        else if (whiteCount > blackCount) winnerSide = 'White';
+
+        const winner = winnerSide ? this.getPlayer(winnerSide) : null;
+
+        this.end(winner);
+        this.over = true;
     }
+}
 
     async play() {
         try {
@@ -353,3 +362,4 @@ export default class Othello extends Game {
         }
     }
 }
+
